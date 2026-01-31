@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RASAYAN 3.0</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      background: linear-gradient(135deg, #121212, #1a1a1a);
+      font-family: 'Press Start 2P', cursive;
+      margin: 0;
+      padding: 0;
+      color: #e0e0e0;
+      animation: fadeInBody 2s ease-in-out;
+    }
+
+    .welcome-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b);
+      color: #7df9ff;
+      border: 8px solid #03dac5;
+      padding: 10px;
+      box-shadow: 0 0 20px #03dac5, 0 0 40px #7df9ff;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards, slideUp 1s ease-out 0.5s;
+    }
+
+    .welcome-page h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #03dac5, 0 0 20px #7df9ff;
+    }
+
+    .welcome-page p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #03dac5;
+    }
+
+    .welcome-page button {
+      background-color: #7df9ff;
+      color: #121212;
+      border: 3px solid #03dac5;
+      padding: 15px 30px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 5px;
+      text-shadow: 0 0 5px #000;
+      transform: translateY(30px);
+      opacity: 0;
+      animation: slideIn 1s ease-out 1s forwards;
+    }
+
+    .welcome-page button:hover {
+      background-color: #03dac5;
+      color: #1b263b;
+      box-shadow: 0 0 10px #7df9ff;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+      }
+
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .container {
+      display: none;
+      max-width: 90%;
+      margin: 20px auto;
+      padding: 20px;
+      border: 8px solid #03dac5;
+      background: linear-gradient(135deg, #1b263b, #121212);
+      box-shadow: 0 0 20px #03dac5, 0 0 40px #7df9ff;
+      border-radius: 10px;
+      color: #e0e0e0;
+      opacity: 0;
+      animation: fadeInMainContent 1.5s forwards;
+    }
+
+    @keyframes fadeInMainContent {
+      to {
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #7df9ff;
+      text-shadow: 0 0 10px #03dac5;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 1em;
+      color: #7df9ff;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 3px solid #03dac5;
+      border-radius: 5px;
+      font-size: 1em;
+      background-color: #1b263b;
+      color: #7df9ff;
+      box-shadow: inset 0 0 10px #03dac5;
+    }
+
+    .results {
+      margin-top: 20px;
+      font-size: 1em;
+      opacity: 0;
+      animation: fadeInResults 1.5s forwards 0.5s;
+    }
+
+    .results h2 {
+      margin-bottom: 5px;
+      color: #7df9ff;
+    }
+
+    .results p {
+      background-color: #121212;
+      padding: 10px;
+      border: 2px dashed #03dac5;
+      border-radius: 5px;
+      color: #7df9ff;
+      text-shadow: 0 0 5px #03dac5;
+    }
+
+    .video-section {
+      margin-top: 20px;
+      text-align: left;
+      opacity: 0;
+      animation: fadeInVideo 1.5s forwards 1s;
+    }
+
+    @keyframes fadeInResults {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInVideo {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .definition-box {
+      margin-top: 20px;
+      padding: 20px;
+      background: linear-gradient(135deg, #1b263b, #121212);
+      border: 5px solid #03dac5;
+      border-radius: 10px;
+      font-size: 1em;
+      color: #e0e0e0;
+      opacity: 0;
+      animation: fadeInDefinition 1.5s forwards 1.5s;
+    }
+
+    @keyframes fadeInDefinition {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .definition-box h2 {
+      margin-bottom: 10px;
+      color: #7df9ff;
+      text-shadow: 0 0 5px #03dac5;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background: #1b263b;
+      color: #7df9ff;
+      padding: 10px 0;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 0.8em;
+      border-top: 3px solid #03dac5;
+      box-shadow: 0 -5px 10px #03dac5;
+    }
+    
+    #reactionVideo {
+      width: 560px;
+      height: 315px;
+      border: none;
+      max-width: 100%;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <footer>Copyright Reserved 2024</footer>
+
+  <div class="welcome-page" id="welcomePage">
+    <h1>Welcome to the World of RASAYAN!</h1>
+    <p>New update in the neon glow of chemistry! Shall we go?</p>
+    <button id="getStartedBtn">Let's Go!</button>
+    <button id="pollutionBtn">Pollution Awareness</button>
+  </div>
+  <div class="container" id="pollutionPage">
+    <h1>Pollution Awareness</h1>
+
+    <div class="definition-box">
+      <h2>What is Pollution?</h2>
+      <p>
+        Pollution is the introduction of harmful substances into the environment,
+        causing damage to air, water, soil, and living organisms.
+        These pollutants disturb ecosystems and pose serious health risks.
+      </p>
+    </div>
+
+    <div class="definition-box">
+      <h2>Major Gases Produced by Pollution</h2>
+      <p>
+        <strong>Carbon Dioxide (CO₂):</strong> Causes global warming and climate change.<br><br>
+        <strong>Carbon Monoxide (CO):</strong> Reduces oxygen delivery in the body; deadly in high amounts.<br><br>
+        <strong>Sulfur Dioxide (SO₂):</strong> Causes acid rain and respiratory problems.<br><br>
+        <strong>Nitrogen Oxides (NOₓ):</strong> Creates smog and acid rain.<br><br>
+        <strong>Methane (CH₄):</strong> Powerful greenhouse gas from landfills and agriculture.<br><br>
+        <strong>Ozone (O₃):</strong> Harmful at ground level, damaging lungs and crops.
+      </p>
+    </div>
+
+    <div class="definition-box">
+      <h2>Major Sources of Pollution</h2>
+      <p>
+        🚗 Vehicle exhaust<br>
+        🏭 Industrial emissions<br>
+        🔥 Burning fossil fuels<br>
+        🚮 Improper waste disposal<br>
+        🌾 Agricultural chemicals
+      </p>
+    </div>
+
+    <div class="definition-box">
+      <h2>Effects of Pollution</h2>
+      <p>
+        ❌ Respiratory diseases<br>
+        ❌ Climate change & global warming<br>
+        ❌ Acid rain damage<br>
+        ❌ Water contamination<br>
+        ❌ Loss of biodiversity
+      </p>
+    </div>
+
+    <div class="definition-box">
+      <h2>How Can We Reduce Pollution?</h2>
+      <p>
+        🌱 Use renewable energy<br>
+        🚴 Reduce vehicle usage<br>
+        ♻ Recycle and reuse materials<br>
+        🌍 Plant more trees<br>
+        ⚡ Save electricity
+      </p>
+    </div>
+
+    <button id="backBtn" style="margin-top:20px;">Back to Reactions</button>
+  </div>
+
+  <div class="container" id="mainContent">
+   
+
+    <h1>Chemical Reactions</h1>
+    <form id="reactionForm">
+      <label for="reaction_input">Select a Reaction Type:</label>
+      <select id="reaction_input" name="reaction_input" required>
+        <option value="">Select...</option>
+        <option value="Combustion Reactions">Combustion Reactions</option>
+        <option value="Acid-Base Neutralization Reactions">Acid-Base Neutralization Reactions</option>
+        <option value="Single Replacement Reactions">Single Replacement Reactions</option>
+        <option value="Double Replacement Reactions">Double Replacement Reactions</option>
+        <option value="Synthesis Reactions">Synthesis Reactions</option>
+        <option value="Redox Reactions">Redox Reactions</option>
+        <option value="Hydrolysis Reactions">Hydrolysis Reactions</option>
+        <option value="Esterification Reactions">Esterification Reactions</option>
+        <option value="Precipitation Reactions">Precipitation Reactions</option>
+        <option value="Substitution Reactions">Substitution Reactions</option>
+        <option value="Addition Reactions">Addition Reactions</option>
+        <option value="Elimination Reactions">Elimination Reactions</option>
+        <option value="Hydrogenation Reactions">Hydrogenation Reactions</option>
+      </select>
+    </form>
+
+    <div class="results">
+      <h2>Reactants:</h2>
+      <p id="real_reactants">N/A</p>
+      <h2>Predicted Products:</h2>
+      <p id="predicted_products">N/A</p>
+      <h2>Reaction Properties:</h2>
+      <p id="reaction_properties">N/A</p>
+    </div>
+
+    <div class="definition-box">
+      <h2>Reaction Definition:</h2>
+      <p id="reaction_definition">N/A</p>
+    </div>
+
+    <div class="video-section" id="videoSection">
+      <h2>Reaction Video:</h2>
+      <iframe id="reactionVideo" src="" frameborder="0"></iframe>
+    </div>
+  </div>
+
+    <script async type='module' src='https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js'></script>
+    <zapier-interfaces-chatbot-embed is-popup='true' chatbot-id='cmkwdkp1907260n4c855ah1op'></zapier-interfaces-chatbot-embed>
+  </script>
+  
+   <script>
+      const reactionData = [
+        {
+          type: "Combustion Reactions",
+          reactants: "CH₄, O₂",
+          products: "CO₂ + 2H₂O",
+          properties: "Exothermic reactions involving oxygen.",
+          definition: "Combustion reaction refers to an exothermic chemical reaction that has high-temperature. It happens between a fuel (the reductant) and an oxidant, usually atmospheric oxygen that produces oxidized, often gaseous products, resulting in a mixture of smoke.",
+          video: "https://www.youtube.com/embed/W2-Njky54aE?si=AvlBdcRH5Rr49qdQ"
+        },
+        {
+          type: "Acid-Base Neutralization Reactions",
+          reactants: "HCl, NaOH",
+          products: "NaCl + H₂O",
+          properties: "Produces salt and water.",
+          definition: "The acid-base neutralization reaction is a reaction that occurs when an equal amounts of acids and bases of the same strength is used to form a neutral solution. An acid-base neutralization example is the reaction between a strong acid and a strong base or the reaction between a weak acid and a weak base..",
+          video: "https://www.youtube.com/embed/TS-I9KrUjB0?si=7eYG8fA0_TcQKcrX"
+        },
+        {
+          type: "Single Replacement Reactions",
+          reactants: "Zn, CuSO₄",
+          products: "ZnSO₄ + Cu",
+          properties: "One element replaces another in a compound.",
+          definition: "A single-displacement reaction occurs when an element replaces another element in a compound. A metal only replaces a metal, and a nonmetal only replaces a nonmetal. Only a more reactive element can replace the other element in the compound with which it reacts.",
+          video: "https://www.youtube.com/embed/bw5Sp3GVgMk?si=a_QwrEBW2j-WutUI"
+        },
+        {
+          type: "Double Replacement Reactions",
+          reactants: "AgNO₃, NaCl",
+          products: "AgCl + NaNO₃",
+          properties: "Exchange of ions between two reactants.",
+          definition: "Double displacement reactions are those in which two chemical substances react by exchanging ions to produce two new molecules. Positive ions exchange negative ions in the double displacement process. Ionic chemicals dissolved in water undergo a lot of double displacement processes. For example, sodium nitrate (NaNO₃) dissolves in water to form sod",
+          video: "https://www.youtube.com/embed/yQowrUeaFk8?si=YcvvSjrz1wDVdWwq"
+        },
+        {
+          type: "Synthesis Reactions",
+          reactants: "H₂, O₂",
+          products: "H₂O",
+          properties: "Combines reactants to form a single product.",
+          definition: "Synthesis reaction is the process of combining simpler substances to form more complex substances. For example, when a compound is synthesized, it is formed by combining two or more simple substances. The synthesis reaction is the process of combining two or more simple substances to form a more complex substance.",
+          video: "https://www.youtube.com/embed/7Y74J0r4Xac?si=SEj98VnYBsq31a4d"
+        },
+        {type: "Redox Reactions", reactants: "2Na, Cl₂", products: "2NaCl", properties: "Electron transfer occurs.", definition: "Redox reactions are reactions that involve electron transfer between two compounds. Electron transfer occurs when two compounds are in contact with each other. The electrons in one compound are transferred to the other compound. This process is called electron transfer.", video: "https://www.youtube.com/embed/UChpoiWstv0?si=RILhUXqmsdz_hc7E"},
+        {type: "Hydrolysis Reactions", reactants: "CH₃COOCH₃, H₂O", products: "CH₃COOH + CH₃OH", properties: "Break bonds with water.", definition: "Hydrolysis is the process of breaking bonds between two compounds by dissolving one of the compound and reacting with water. The resulting compound is called hydrolyzed. For example, when a compound is hydrolyzed, it breaks bonds with water and forms a hydrolyzed", video: "https://www.youtube.com/embed/UjwARksTo94?si=eGlz_V0RVR5S2cs8"},
+        {type: "Esterification Reactions", reactants: "CH₃OH, CH₃COOH", products: "CH₃COOCH₃ + H₂O", properties: "Forms ester and water.", definition: "Esterification is the chemical process that combines alcohol (ROH) and an organic acid (RCOOH) to form an ester (RCOOR) and water. This chemical reaction results in forming at least one product of ester through an esterification reaction between a carboxylic acid and an alcohol.", video: "https://www.youtube.com/embed/tKpVEwoAMfQ?si=IP1GOlVji7nqkLGI"},
+        {type: "Precipitation Reactions", reactants: "BaCl₂, Na₂SO₄", products: "BaSO₄ + 2NaCl", properties: "Forms an insoluble precipitate.", definition: "The term precipitation reaction can be defined as a chemical reaction occurring in an aqueous solution where two ionic bonds combine, resulting in the formation of an insoluble salt. These insoluble salts formed in precipitation reactions are called precipitates.", video: "https://www.youtube.com/embed/XaMyfjYLhxU?si=tNSa8t4z02rdaFlm"},
+        {type: "Substitution Reactions", reactants: "CH₄, Cl₂", products: "CH₃Cl + HCl", properties: "Replaces atoms in molecules.", definition: "The substitution reaction is defined as a reaction in which the functional group of one chemical compound is substituted by another group or it is a reaction which involves the replacement of one atom or a molecule of a compound with another atom or molecule.", video: "https://www.youtube.com/embed/CoK3Iv0HaDY?si=wXqFoCbAZKkvWHgr"},
+        {type: "Addition Reactions", reactants: "H₂, Br₂", products: "2HBr", properties: "Adds atoms to compounds.", definition: " An addition reaction is a reaction that adds two compounds together to make a new compound. In this reaction, a double or triple bond is broken to form two new single bonds.", video: "https://www.youtube.com/embed/g5VR-VdGGU4?si=oNbibOcpZXuonFC2"},
+        {type: "Elimination Reactions", reactants: "CH₃CH₂Br + OH⁻", products: "CH₂=CH₂ + Br⁻ + H₂O", properties: "Removes atoms from compounds.", definition: "An elimination reaction is a type of chemical reaction where several atoms either in pairs or groups are removed from a molecule. The removal usually takes place due to the action of acids and bases or the action of metals. It can also happen through the process of heating at high temperatures.", video: "https://www.youtube.com/embed/AfvVyIuhmFI?si=JhDBDn3ElKDpkOmj"},
+        {type: "Hydrogenation Reactions", reactants: "CH₂=CH₂, H₂", products: "CH₃CH₃", properties: "Adds hydrogen to unsaturated compounds.", definition: "Hydrogenation is the process where hydrogen atoms bind to the double bond of a compound, facilitating its conversion to a single bond, in the presence of a catalyst. Hydrocarbons with double bonds are classified as unsaturated. Those that only contain single bonds are saturated.", video: "https://www.youtube.com/embed/Ngv-IFRGRXQ?si=u0F1HenSn_pVbzzq"}
+      ];     document.getElementById('reaction_input').addEventListener('change', function () {
+       const selectedReaction = this.value;
+       const result = reactionData.find(reaction => reaction.type === selectedReaction) || {};
+
+       document.getElementById('real_reactants').textContent = result.reactants || 'N/A';
+       document.getElementById('predicted_products').textContent = result.products || 'N/A';
+       document.getElementById('reaction_properties').textContent = result.properties || 'N/A';
+       document.getElementById('reaction_definition').textContent = result.definition || 'N/A';
+       document.getElementById('reactionVideo').src = result.video || '';
+     });
+
+       document.getElementById('getStartedBtn').addEventListener('click', function () {
+         document.getElementById('welcomePage').style.display = 'none';
+
+         document.getElementById('mainContent').style.display = 'block';
+       });
+
+       document.getElementById('reaction_input').addEventListener('change', function () {
+         const selectedReaction = this.value;
+         const result = reactionData.find(reaction => reaction.type === selectedReaction) || {};
+
+         document.getElementById('real_reactants').textContent = result.reactants || 'N/A';
+         document.getElementById('predicted_products').textContent = result.products || 'N/A';
+         document.getElementById('reaction_properties').textContent = result.properties || 'N/A';
+         document.getElementById('reaction_definition').textContent = result.definition || 'N/A';
+         document.getElementById('reactionVideo').src = result.video || '';
+       });
+
+
+    document.getElementById('getStartedBtn').addEventListener('click', function () {
+    document.getElementById('welcomePage').style.display = 'none';
+
+      document.getElementById('mainContent').style.display = 'block';
+    });
+     document.getElementById('pollutionBtn').addEventListener('click', function () {
+       document.getElementById('welcomePage').style.display = 'none';
+       document.getElementById('mainContent').style.display = 'none';
+       document.getElementById('pollutionPage').style.display = 'block';
+     });
+
+     document.getElementById('backBtn').addEventListener('click', function () {
+       document.getElementById('pollutionPage').style.display = 'none';
+       document.getElementById('mainContent').style.display = 'block';
+     });
+
+  </script>
+</body>
+
+</html>
